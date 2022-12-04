@@ -10,4 +10,10 @@ public class IndexController {
     public String index() {
         return "index";
     }
+
+    @GetMapping("/login")
+    public String showLoginForm() {
+        // templates의 html확장자를 뺀 상대경로
+        return "login";
+    }
 }
