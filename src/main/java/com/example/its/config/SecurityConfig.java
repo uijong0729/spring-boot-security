@@ -14,7 +14,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .anyRequest().authenticated()                        // 상기 이외의 리퀘스트는 인증이 필요
             .and()
             .formLogin()                                        // 폼 로그인을 로그인 형식으로서 지정
-            .loginPage("login");                      // 로그인 페이지
+            .loginPage("/login");                      // 로그인 페이지
         
     }
 }
