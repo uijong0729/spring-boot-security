@@ -10,11 +10,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
             .authorizeRequests()
-            .mvcMatchers("/login/**").permitAll()   // login페이지 인증 불필요
-            .anyRequest().authenticated()                        // 상기 이외의 리퀘스트는 인증이 필요
+            // login페이지는 인증 불필요 (permitAll)
+            .mvcMatchers("/login/**").permitAll()  
+            // 상기 이외의 리퀘스트는 인증이 필요 (authenticated)
+            .anyRequest().authenticated()                
             .and()
-            .formLogin()                                        // 폼 로그인을 로그인 형식으로서 지정
-            .loginPage("/login");                      // 로그인 페이지
+            // 폼 로그인을 로그인 방식으로서 지정
+            .formLogin()                                        
+            // 로그인 페이지
+            .loginPage("/login");                      
         
     }
 }
