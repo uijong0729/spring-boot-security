@@ -16,4 +16,9 @@ public class IndexController {
         // templates의 html확장자를 뺀 상대경로
         return "login";
     }
+    
+    @GetMapping("/logout")
+    public String showlogoutForm() {
+        return "logout";
+    }
 }

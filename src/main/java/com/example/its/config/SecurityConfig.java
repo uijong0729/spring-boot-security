@@ -16,7 +16,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .anyRequest().authenticated()                
             .and()
             // 폼 로그인을 로그인 방식으로서 지정
-            .formLogin()                                        
+            .formLogin()
+            // 폼 로그인시 아이디의 파라미터 이름 지정
+            .usernameParameter("username")
+            // 폼 로그인시 아이디의 파라미터 이름 지정
+            .passwordParameter("password")
             // 로그인 페이지
             .loginPage("/login");                      
         
