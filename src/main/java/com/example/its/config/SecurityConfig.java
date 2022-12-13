@@ -19,6 +19,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        // 디버그용 h2-console 설정
+        http
+            .authorizeRequests()
+            .antMatchers("/h2-conole/**").permitAll()
+            .and()
+            .csrf().ignoringAntMatchers("/h2-console/**")
+            .and()
+            .headers().frameOptions().disable();
+
         http
             .authorizeRequests()
             // login페이지는 인증 불필요 (permitAll)
