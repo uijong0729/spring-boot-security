@@ -1,5 +1,6 @@
 package com.example.its.domain.auth;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.apache.ibatis.annotations.Mapper;
@@ -10,4 +11,7 @@ public interface UserRepository {
     
     @Select("select * from users where username = #{username}")
     Optional<User> findByUserName(String username);
+
+    @Select("select * from users")
+    List<User> findAll();
 }
