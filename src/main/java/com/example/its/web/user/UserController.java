@@ -22,8 +22,13 @@ public class UserController {
     @GetMapping
     public String showList(Model model) {
         model.addAttribute("userList", userService.findAll());
-        
         // templates 기준으로 상대경로
         return "users/list";
     }
+
+    @GetMapping("/creationForm")
+    public String showCreateForm() {
+        return "users/creationForm";
+    }
+    
 }
