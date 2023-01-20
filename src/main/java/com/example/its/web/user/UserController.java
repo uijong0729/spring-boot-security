@@ -5,6 +5,8 @@ import java.util.Collections;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -38,9 +40,15 @@ public class UserController {
     }
 
     // Post /users
+    // Validated 유효성 체크
+    // @Validated 인수 바로 뒤에 바로 BindingResult를 인수로 추가하는 것이 중요
     @PostMapping
-    public String create(UserForm form) {
+    public String create(@Validated UserForm form, BindingResult bindingResult) {
         log.info("create : " + form.getUsername());
+        // Validated 에러가 발생한다면
+        if (bindingResult.hasErrors()) {
+            return showCreateForm(form);
+        }
         return "redirect:/users";
     }
 
