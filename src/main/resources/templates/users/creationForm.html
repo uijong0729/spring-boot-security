@@ -14,13 +14,27 @@
     <div class="mt-3">
         <label class="form-label" for="usernameInput">username</label>
         <!-- 타임리프에서는 name속성을 직접지정하지 않는다 -->
-        <input class="form-control" type="text" name="" th:field="*{username}" id="usernameInput">
+        <!--  -->
+        <input class="form-control" type="text" name="" 
+            th:field="*{username}" id="usernameInput" 
+            th:classappend="${#fields.hasErrors('username')} ? is-invalid">
+        <!-- 부트스트랩의 is-invalid와 invalid-feedback에 spring의 vaildation을 결합한 형태  -->
+        <!-- 에러가 있다면 에러메시지 표시 -->
+        <p class="invalid-feedback" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">
+            (errors)
+        </p>
     </div>
     <!-- password -->
     <div class="mt-3">
         <label class="form-label" for="passwordInput">password</label>
         <!-- 타임리프에서는 name속성을 직접지정하지 않는다 -->
-        <input class="form-control" type="password" name="" th:field="*{password}" id="passwordInput">
+        <input class="form-control" type="password" name="" 
+            th:field="*{password}" id="passwordInput"
+            th:classappend="${#fields.hasErrors('username')} ? is-invalid">
+        <!-- 에러가 있다면 에러메시지 표시 -->
+        <p class="invalid-feedback" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">
+            (errors)
+        </p>
     </div>
     <!-- button -->
     <div class="mt-3">
