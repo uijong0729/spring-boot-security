@@ -48,7 +48,10 @@ public class UserController {
         // Validated 에러가 발생한다면
         if (bindingResult.hasErrors()) {
             return showCreateForm(form);
-        }
+        } 
+        // 등록
+        userService.create(form.getUsername(), form.getPassword());
+
         return "redirect:/users";
     }
 
