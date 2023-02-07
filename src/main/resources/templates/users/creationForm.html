@@ -30,9 +30,9 @@
         <!-- 타임리프에서는 name속성을 직접지정하지 않는다 -->
         <input class="form-control" type="password" name="" 
             th:field="*{password}" id="passwordInput"
-            th:classappend="${#fields.hasErrors('username')} ? is-invalid">
+            th:classappend="${#fields.hasErrors('password')} ? is-invalid">
         <!-- 에러가 있다면 에러메시지 표시 -->
-        <p class="invalid-feedback" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">
+        <p class="invalid-feedback" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">
             (errors)
         </p>
     </div>
