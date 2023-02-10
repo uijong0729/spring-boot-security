@@ -1,6 +1,5 @@
 package com.example.its.domain.auth;
 
-import java.util.Collection;
 import java.util.Collections;
 
 import org.springframework.security.core.userdetails.UserDetails;

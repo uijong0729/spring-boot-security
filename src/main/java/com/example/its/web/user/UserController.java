@@ -1,8 +1,5 @@
 package com.example.its.web.user;
 
-import java.util.Collection;
-import java.util.Collections;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -12,7 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.example.its.domain.user.UserService;
+import com.example.its.domain.auth.UserService;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
