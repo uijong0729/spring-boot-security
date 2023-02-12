@@ -2,10 +2,9 @@ package com.example.its.config;
 
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.crypto.password.NoOpPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.example.its.domain.auth.CustomUserDetailService;
 
@@ -16,6 +15,7 @@ import lombok.AllArgsConstructor;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private CustomUserDetailService userDetailsService;
+    private PasswordEncoder passwordEncoder;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -51,6 +51,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         auth
             .userDetailsService(userDetailsService)
             //passowrd encoder : 패스워드를 해쉬화 하기 위함
-            .passwordEncoder(NoOpPasswordEncoder.getInstance());
+            .passwordEncoder(passwordEncoder);
     }
 }
