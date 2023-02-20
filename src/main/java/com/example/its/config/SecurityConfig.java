@@ -31,8 +31,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         http
             .authorizeRequests()
+            // users이하 리소스는 ADMIN권한이 필요
+            .mvcMatchers("/users/**").hasAnyAuthority("ADMIN")
             // login페이지는 인증 불필요 (permitAll)
-            .mvcMatchers("/login/**").permitAll()  
+            .mvcMatchers("/login/**").permitAll()
             // 상기 이외의 리퀘스트는 인증이 필요 (authenticated)
             .anyRequest().authenticated()                
             .and()
