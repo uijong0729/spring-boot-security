@@ -12,11 +12,13 @@
   <thead>
   <tr>
     <th>유저명</th>
+    <th>권한</th>
   </tr>
   </thead>
   <tbody>
   <tr th:each="user : ${userList}">
     <th th:text="${user.username}">(username)</th>
+    <td th:text="${user.authority}">(authority)</th>
   </tr>
   </tbody>
 </table>
