@@ -4,20 +4,17 @@
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
       th:replace="~{fragments/layout :: layout(~{::title}, ~{::body})}">
 <head>
-    <title>トップページ | 課題管理アプリケーション</title>
+    <title>유저관리 어플리케이션</title>
 </head>
 <body>
-<h1 class="mt-3">課題管理アプリケーション</h1>
+<h1 class="mt-3">유저관리 어플리케이션</h1>
 <ul>
-    <li>
-        <a href="./issues/list.html" th:href="@{/issues}">TODO일람</a>
         <!-- Spring Security with Thymeleaf -->
         <!-- ADMIN 권한 유저만 볼 수 있는 링크 -->
         <li sec:authorize="hasAuthority('ADMIN')">
             <a href="./users/list.html" th:href="@{/users}">유저일람</a>
         </li>
         <a href="./logout.html" th:href="@{/logout}">로그아웃</a>
-    </li>
 </ul>
 </body>
 </html>

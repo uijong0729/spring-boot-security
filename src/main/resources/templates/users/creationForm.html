@@ -42,16 +42,23 @@
         <div id="authorityRadio">
             <!-- class와 name지정에 관해선 bootstrap가이드 참조 -->
             <!-- https://getbootstrap.jp/docs/5.0/forms/checks-radios/ -->
-            <div class="form-check">
+            <div class="form-check" th:classappend="${#fields.hasErrors('authority')} ? is-invalid">
                 <!-- name대신 th:field를 사용 -->
-                <input type="radio" th:field="*{authority}" class="form-check-input" id="authorityAdminRadio" value="ADMIN">
+                <!-- th:classappend는 미선택에 대한 validation 체크-->
+                <input type="radio" th:field="*{authority}" class="form-check-input" id="authorityAdminRadio" value="ADMIN"
+                    th:classappend="${#fields.hasErrors('authority')} ? is-invalid">
                 <label for="authorityAdminRadio" class="form-check-label">ADMIN</label>
             </div>
-            <div class="form-check">
+            <div class="form-check" th:classappend="${#fields.hasErrors('authority')} ? is-invalid">
                 <!-- 똑같은 name속성을 지정해야 radio버튼이 하나만 선택된다 -->
-                <input type="radio" th:field="*{authority}"  class="form-check-input" id="authorityUserRadio" value="USER">
+                <input type="radio" th:field="*{authority}"  class="form-check-input" id="authorityUserRadio" value="USER"
+                    th:classappend="${#fields.hasErrors('authority')} ? is-invalid">
                 <label for="authorityUserRadio" class="form-check-label">USER</label>
             </div>
+            <!-- 에러가 있다면 에러메시지 표시 -->
+            <p class="invalid-feedback" th:if="${#fields.hasErrors('authority')}" th:errors="*{authority}">
+                (errors)
+            </p>
         </div>
     </div>
     <!-- button -->
