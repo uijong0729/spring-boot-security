@@ -1,25 +1,23 @@
 package com.example.its.config;
 
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-
-import com.example.its.domain.auth.CustomUserDetailService;
+import org.springframework.security.crypto.password.Pbkdf2PasswordEncoder;
+import org.springframework.security.web.SecurityFilterChain;
 
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
 @EnableWebSecurity  // 웹 세큐리티 관련 설정이 있음을 명시
-public class SecurityConfig extends WebSecurityConfigurerAdapter {
+public class SecurityConfig {
 
-    private CustomUserDetailService userDetailsService;
-    private PasswordEncoder passwordEncoder;
+    // private CustomUserDetailService userDetailsService;
+    // private PasswordEncoder passwordEncoder;
 
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
+    @Bean
+    protected SecurityFilterChain configure(HttpSecurity http) throws Exception {
         // 디버그용 h2-console 설정
         http
             .authorizeRequests()
@@ -47,15 +45,25 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             // 로그인 페이지
             .loginPage("/login");                      
         
+        return http.build();
     }
 
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth
-            .userDetailsService(userDetailsService)
-            //passowrd encoder : 패스워드를 해쉬화 하기 위함
-            .passwordEncoder(passwordEncoder)
-            // .passwordEncoder(NoOpPasswordEncoder.getInstance())
-            ;
+
+    // 5.7이후 불필요하게 되었다
+    //  - PasswordEncoderConfig가 자동으로 등록 됨
+    //  - UserDetailsService가 자동으로 등록 됨
+    //
+    // protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+    //     auth
+    //         .userDetailsService(userDetailsService)
+    //         //passowrd encoder : 패스워드를 해쉬화 하기 위함
+    //         .passwordEncoder(passwordEncoder)
+    //         // .passwordEncoder(NoOpPasswordEncoder.getInstance())
+    //         ;
+    // }
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new Pbkdf2PasswordEncoder();
     }
 }
